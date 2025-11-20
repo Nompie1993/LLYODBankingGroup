@@ -1,7 +1,65 @@
+/* src/App.css */
+:root {
+  --brand: #0066cc;
+  --text: #111827;
+  --muted: #6b7280;
+  --bg-panel: #ffffff;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
 
 .app-container {
-  max-width: 900px;
+  max-width: 980px;
   margin: 24px auto;
   padding: 0 16px 32px;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color: var(--text);
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Buttons */
+.btn {
+  background-color: var(--brand);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:focus {
+  outline: 3px solid #93c5fd; /* visible focus for accessibility */
+}
+
+/* Inputs */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+input, select {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .grid-2 { grid-template-columns: 1fr; }
 }

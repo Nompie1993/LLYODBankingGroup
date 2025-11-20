@@ -1,5 +1,5 @@
 // src/components/InputForm.js
-import React from 'react';
+import React from "react";
 
 const InputForm = ({ formData, onChange, onCalculate }) => {
   const handleChange = (e) => {
@@ -8,82 +8,75 @@ const InputForm = ({ formData, onChange, onCalculate }) => {
   };
 
   return (
-    <section aria-labelledby="input-form-title" style={styles.section}>
-      <h2 id="input-form-title" style={styles.heading}>Mortgage Details</h2>
+    <section className="panel" aria-labelledby="mortgage-details-title">
+      <h2 id="mortgage-details-title">Mortgage Details</h2>
 
-      <div style={styles.field}>
+      <div className="input-group">
         <label htmlFor="amount">Loan Amount</label>
         <input
           id="amount"
           name="amount"
           type="number"
+          inputMode="decimal"
           min="0"
           placeholder="e.g., 500000"
+          aria-describedby="amount-help"
           value={formData.amount}
           onChange={handleChange}
         />
+        <small id="amount-help" className="muted">Total amount you plan to borrow.</small>
       </div>
 
-      <div style={styles.field}>
+      <div className="input-group">
         <label htmlFor="rate">Interest Rate (%)</label>
         <input
           id="rate"
           name="rate"
           type="number"
+          inputMode="decimal"
           min="0"
           step="0.01"
           placeholder="e.g., 11.5"
+          aria-describedby="rate-help"
           value={formData.rate}
           onChange={handleChange}
         />
+        <small id="rate-help" className="muted">Annual interest rate (nominal).</small>
       </div>
 
-      <div style={styles.field}>
+      <div className="input-group">
         <label htmlFor="term">Term (years)</label>
         <input
           id="term"
           name="term"
           type="number"
+          inputMode="numeric"
           min="1"
-          placeholder="e.g., 20"
-          value={formData.term}
-          onChange={handleChange}
-        />
+            placeholder="e.g., 20"
+            aria-describedby="term-help"
+            value={formData.term}
+            onChange={handleChange}
+          />
+          <small id="term-help" className="muted">Loan duration in years.</small>
       </div>
 
-      <button style={styles.button} onClick={onCalculate}>
-        Calculate
-      </button>
+      <div className="input-group">
+        <label htmlFor="type">Mortgage Type</label>
+        <select
+          id="type"
+          name="type"
+          value={formData.type}
+          onChange={handleChange}
+        >
+          <option value="fixed">Fixed Rate</option>
+          <option value="adjustable">Adjustable Rate</option>
+          <option value="interestOnly">Interest-Only</option>
+        </select>
+      </div>
+
+      <button className="btn" onClick={onCalculate}>Calculate</button>
     </section>
   );
-};
-
-const styles = {
-  section: {
-    border: '1px solid #e5e7eb',
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 16,
-  },
-  heading: {
-    marginTop: 0,
-    fontSize: '20px',
-  },
-  field: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 6,
-    marginBottom: 12,
-  },
-  button: {
-    backgroundColor: '#0066cc',
-    color: '#fff',
-    border: 'none',
-    padding: '10px 16px',
-    borderRadius: 6,
-    cursor: 'pointer',
-    fontSize: '16px',
-  },
 };
 
 export default InputForm;
